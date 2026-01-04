@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h3>Mark Attendance</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Employee Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" name="status">
+                    <option value="Present">Present</option>
+                    <option value="Work From Home">Work From Home</option>
+                    <option value="On Leave">On Leave</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h3>Today's Logs</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr><th>Name</th><th>Status</th><th>Time</th></tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.name }}</td>
+                    <td>{{ log.status }}</td>
+                    <td>{{ log.time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
